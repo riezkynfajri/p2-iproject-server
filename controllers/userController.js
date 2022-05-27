@@ -20,7 +20,14 @@ class UserController {
         to: email,
         subject: "Welcome Aboard!",
         text: `Now Let's Go Mid or Feed!
-        <img src="https://tenor.com/view/terrorblade-dota2-gif-20585292" alt="This is an animated gif image, but it does not move"/>`,
+        <iframe
+  src="https://giphy.com/embed/RNbKPvxpIsvLx60Qos"
+  width="480"
+  height="480"
+  frameborder="0"
+  class="giphy-embed"
+  allowfullscreen
+></iframe>`,
       }
 
       const legit = await scanDotaId(dotaId)
