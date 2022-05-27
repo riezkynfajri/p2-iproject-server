@@ -18,8 +18,9 @@ class UserController {
       let mailOptions = {
         from: "whatoeat2022@gmail.com",
         to: email,
-        subject: "Register Success",
-        text: `Congratulations! You have successfully register on our Platform!`,
+        subject: "Welcome Aboard!",
+        text: `Now Let's Go Mid or Feed!
+        <img src="https://tenor.com/view/terrorblade-dota2-gif-20585292" alt="This is an animated gif image, but it does not move"/>`,
       }
 
       const legit = await scanDotaId(dotaId)
