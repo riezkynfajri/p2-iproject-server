@@ -1,5 +1,5 @@
 "use strict"
-
+const nodemailer = require("nodemailer")
 const { comparePass, createToken, scanDotaId } = require("../helpers/validators")
 const { User } = require("../models")
 
@@ -8,16 +8,31 @@ class UserController {
     try {
       const { username, email, password, dotaId } = req.body
       const input = { username, email, password, dotaId }
+      let transporter = nodemailer.createTransport({
+        service: "gmail",
+        auth: {
+          user: "riezkynurfajri@gmail.com",
+          pass: "gyknduiculjpdhtd",
+        },
+      })
+      let mailOptions = {
+        from: "whatoeat2022@gmail.com",
+        to: email,
+        subject: "Register Success",
+        text: `Congratulations! You have successfully register on our Platform!`,
+      }
 
       const legit = await scanDotaId(dotaId)
       if (!legit) throw new Error("dota")
       const create = await User.create(input)
+
+      const execute = await transporter.sendMail(mailOptions)
+
       res.status(201).json({
         statusCode: 201,
         message: `Welcome aboard ${create.username}!`,
       })
     } catch (err) {
-      console.log(err)
       next(err)
     }
   }
